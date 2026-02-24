@@ -28,17 +28,25 @@ public:
 
     MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
         /* TODO: Define overloaded constructor here */
+        this->propertyName = propertyName;
+        this->propertyColor = propertyColor;
+        this->value = value;
+        this->rent = rent;
     }
 
     bool isEqual(MonopolySpace other) {
         /* TODO: Define isEqual here (compare by name is fine if you enforce uniqueness) */
-        return false;
+        return propertyName == other.propertyName;
     }
 
     void print() {
         /* TODO: Define print here */
         // Example style:
         // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+        cout << propertyName << " | "
+             << propertyColor << " | $"
+             << value << " | Rent "
+             << rent << endl;
     }
 };
 
