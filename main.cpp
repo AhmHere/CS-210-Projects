@@ -108,12 +108,30 @@ public:
     bool addSpace(T value) {
         // TODO:
         // - If nodeCount == MAX_SPACES return false (do not corrupt list)
+        // capacity check
+        if (nodeCount == MAX_SPACES) {
+            return false;
+        }
         // - Create new node
+        Node<T>* newNode = new Node<T>(value);
         // - If empty list: head=tail=player=new, new->next=head
-        // - Else: tail->next=new, tail=new, tail->next=head
+        if (headNode == nullptr) {
+            headNode = newNode;
+            tailNode = newNode;
+            playerNode = newNode;
+
+            newNode->nextNode = headNode;
+        }
+        else { // - Else: tail->next=new, tail=new, tail->next=head
+            // insert at tail
+            tailNode->nextNode = newNode;
+            tailNode = newNode;
+
+            tailNode->nextNode = headNode;
+        }
         // - nodeCount++
-        cout << "addSpace unwritten" << endl;
-        return false;
+        nodeCount++;
+        return true;
     }
 
     // -------------------------------
