@@ -140,11 +140,18 @@ public:
     int addMany(vector<T> values) {
         // TODO:
         // - Add sequentially until full
-        // - Stop exactly when you reach MAX_SPACES
+        int addedCount = 0;
+
+        for (T value : values) {
+
+            if (!addSpace(value)) {
+                break;  // - Stop exactly when you reach MAX_SPACES
+            }
         // - Return number successfully added
+            addedCount++;
+        }
         // - Do not corrupt pointers if capacity is exceeded
-        cout << "addMany unwritten" << endl;
-        return 0;
+        return addedCount;
     }
 
     // -------------------------------
