@@ -159,12 +159,24 @@ public:
     // -------------------------------
     void movePlayer(int steps) {
         // TODO:
-        // - Move playerNode forward 'steps' times, node-by-node
-        // - Wrap naturally because list is circular
-        // - Detect and track passing GO:
-        //   increment passGoCount when a move crosses from tail back to head
         // - Must handle empty list safely
-        cout << "movePlayer unwritten" << endl;
+        if (playerNode == nullptr) {
+            cout << "Board is empty." << endl;
+            return;
+        }
+        // - Wrap naturally because list is circular
+        for (int i = 0; i < steps; i++) {
+            // - Move playerNode forward 'steps' times, node-by-node
+            // - Detect and track passing GO:
+            if (playerNode == tailNode) {
+                passGoCount++;
+            }
+            //   increment passGoCount when a move crosses from tail back to head
+            playerNode = playerNode->nextNode;
+        }
+
+        cout << "Player landed on: ";
+        playerNode->data.print();
     }
 
     int getPassGoCount() {
