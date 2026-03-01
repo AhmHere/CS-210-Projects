@@ -188,18 +188,37 @@ public:
     // -------------------------------
     void printFromPlayer(int count) {
         // TODO:
-        // - Print exactly 'count' nodes starting from playerNode
-        // - Must not infinite loop
         // - Must handle empty list
         // - Output must be deterministic and readable
-        cout << "printFromPlayer unwritten" << endl;
+        if (playerNode == nullptr) {
+            cout << "Board is empty." << endl;
+            return;
+        }
+        // - Print exactly 'count' nodes starting from playerNode
+        Node<T>* current = playerNode;
+        // - Must not infinite loop
+        for (int i = 0; i < count; i++) {
+
+            current->data.print();
+            current = current->nextNode;
+        }
     }
 
     // Optional helper: print full board once (one full cycle)
     void printBoardOnce() {
         // TODO:
         // - Traverse exactly one full cycle and print each node
-        cout << "printBoardOnce unwritten" << endl;
+        if (headNode == nullptr) {
+            cout << "Board is empty." << endl;
+            return;
+        }
+
+        Node<T>* current = headNode;
+
+        do {
+            current->data.print();
+            current = current->nextNode;
+        } while (current != headNode);
     }
 
     // -------------------------------
