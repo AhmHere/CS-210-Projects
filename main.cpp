@@ -226,15 +226,58 @@ public:
     // -------------------------------
     bool removeByName(string name) {
         // TODO:
+        if (headNode == nullptr) {
+            return false;
+        }
         // - Delete FIRST matching node
-        // - Must handle:
-        //   - deleting head
-        //   - deleting tail
-        //   - deleting the only-node list
-        // - Maintain circular link tail->next=head
-        // - If playerNode points to deleted node, move playerNode to a safe node
-        // - nodeCount--
-        cout << "removeByName unwritten" << endl;
+        Node<T>* current = headNode;
+        Node<T>* previous = tailNode;
+
+        do {
+
+            if (current->data.propertyName == name) {
+
+                //   - deleting the only-node list
+                if (current == headNode && current == tailNode) {
+                    headNode = nullptr;
+                    tailNode = nullptr;
+                    playerNode = nullptr;
+                }
+
+                //   - deleting head
+                else if (current == headNode) {
+                    headNode = headNode->nextNode;
+                    // - Maintain circular link tail->next=head
+                    tailNode->nextNode = headNode;
+                }
+
+                //   - deleting tail
+                else if (current == tailNode) {
+                    previous->nextNode = headNode;
+                    tailNode = previous;
+                }
+
+                //   - deleting middle node
+                else {
+                    previous->nextNode = current->nextNode;
+                }
+
+                // - If playerNode points to deleted node, move playerNode to a safe node
+                if (playerNode == current) {
+                    playerNode = current->nextNode;
+                }
+                // - nodeCount--
+                delete current;
+                nodeCount--;
+
+                return true;
+            }
+
+            previous = current;
+            current = current->nextNode;
+
+        } while (current != headNode);
+
         return false;
     }
 

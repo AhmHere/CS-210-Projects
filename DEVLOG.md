@@ -53,14 +53,19 @@ Each entry may be one of the following:
 ---
 
 ### Entry 3
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-03-01  
+**Entry Type:** Bug Fix   
+**Task worked on:** Implementing removeByName for the circular linked list board    
+**Issue or decision:** While implementing the removeByName function, I needed to correctly delete nodes from a circular linked list while maintaining the board’s circular structure. The function must handle several edge cases including deleting the head node, deleting the tail node, and deleting the only node in the list.    
+**Error message / symptom (if applicable):** During initial testing I realized that deleting the head node could break the circular link if the tail node was not updated to point to the new head. This would cause the board traversal functions (such as player movement) to eventually reach a null pointer or break the circular structure.  
+**What I tried:** I first implemented deletion using a standard linked list approach with previous and current pointers. However, I needed to review how the tail node should be updated when the head changes, and how to correctly update the tail node when deleting the last element in the board.      
+**Fix / resolution (or final decision):** I updated the logic to handle each edge case explicitly:
+- If the list only contains one node, all pointers are set to nullptr.
+- If the head node is deleted, headNode is advanced and tailNode->nextNode is updated to maintain the circular link.
+- If the tail node is deleted, the previous node becomes the new tail and its next pointer is set to headNode.
+- For middle nodes, the previous node simply skips over the deleted node.
+
+**Commit(s):** Day 7: Implemented removeByName with full circular list edge case handling  
 
 ---
 
