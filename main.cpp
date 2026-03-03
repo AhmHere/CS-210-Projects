@@ -286,11 +286,24 @@ public:
     // -------------------------------
     vector<string> findByColor(string color) {
         // TODO:
-        // - Traverse ring exactly once
-        // - Collect matching names in vector<string>
-        // - Return matches
-        cout << "findByColor unwritten" << endl;
         vector<string> matches;
+        // - Handle Empty Board
+        if (headNode == nullptr) {
+            return matches;
+        }
+
+        Node<T>* current = headNode;
+        // - Traverse ring exactly once
+        do {
+            // - Collect matching names in vector<string>
+            if (current->data.propertyColor == color) {
+                matches.push_back(current->data.propertyName);
+            }
+
+            current = current->nextNode;
+
+        } while (current != headNode);
+        // - Return matches
         return matches;
     }
 

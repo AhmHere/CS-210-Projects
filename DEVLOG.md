@@ -70,14 +70,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 4
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-03-02  
+**Entry Type:** Bug Fix
+**Task worked on:** Implementing findByColor traversal for the circular linked list board   
+**Issue or decision:** While implementing the findByColor function, I initially attempted to traverse the board using a standard while loop similar to a normal singly linked list. However, because the Monopoly board is implemented as a circular linked list, this approach can easily result in an infinite loop if the traversal stopping condition is not handled correctly.   
+**Error message / symptom (if applicable):** While reviewing the traversal logic, I realized that a loop condition such as `while(current != nullptr)` would never terminate because nodes in the circular board always point to another node and never reach a null pointer. This would cause the function to continue traversing the board indefinitely.    
+**What I tried:** I reviewed how circular linked lists are normally traversed and compared different traversal patterns. I stepped through the logic to determine how to detect when the traversal had returned to the starting node.      
+**Fix / resolution (or final decision):** I updated the traversal logic to start at `headNode` and use a `do-while` loop that continues until the pointer returns to `headNode`. This ensures that each node in the board is visited exactly once while preventing an infinite loop during traversal.  
+**Commit(s):**  Day 8: Implemented findByColor traversal to locate properties by color
 
 ---
 
