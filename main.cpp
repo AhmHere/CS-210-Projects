@@ -324,10 +324,22 @@ public:
     // -------------------------------
     int countSpaces() {
         // TODO:
+        if (headNode == nullptr) {
+            return 0;
+        }
+
+        int count = 0;
         // - Must be O(n), traverse exactly once with correct stop condition
+        Node<T>* current = headNode;
         // - Do NOT rely on nodeCount for this method
-        cout << "countSpaces unwritten" << endl;
-        return 0;
+        do {
+
+            count++;
+            current = current->nextNode;
+
+        } while (current != headNode);
+
+        return count;
     }
 
     // -------------------------------
