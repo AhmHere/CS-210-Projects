@@ -347,10 +347,30 @@ public:
     // -------------------------------
     void clear() {
         // TODO:
-        // - Safely delete all nodes
+        if (headNode == nullptr) {
+            return;
+        }
         // - Tip: if tailNode exists, break the cycle first: tailNode->nextNode = nullptr
+        // break circular link first
+        if (tailNode != nullptr) {
+            tailNode->nextNode = nullptr;
+        }
+
+        Node<T>* current = headNode;
+        // - Safely delete all nodes
         // - Then delete like a normal singly linked list
-        cout << "clear unwritten" << endl;
+        while (current != nullptr) {
+            Node<T>* temp = current;
+            current = current->nextNode;
+            delete temp;
+        }
+
+        headNode = nullptr;
+        tailNode = nullptr;
+        playerNode = nullptr;
+
+        nodeCount = 0;
+        passGoCount = 0;
     }
 };
 

@@ -82,14 +82,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 5
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-03-04  
+**Entry Type:** Bug Fix / Edge Case
+**Task worked on:** Implementing clear() cleanup function      
+**Issue or decision:** The board uses a circular linked list, which means the last node points back to the head node. Attempting to delete nodes directly using a standard traversal loop would create an infinite loop because the traversal would never reach a null pointer.    
+**Error message / symptom (if applicable):** While designing the cleanup logic, it became clear that a normal singly linked list deletion pattern would not work due to the circular structure.    
+**What I tried:** I initially considered deleting nodes while checking for headNode again, but this approach made the logic more complicated and error-prone.    
+**Fix / resolution (or final decision):** I followed the recommended strategy of breaking the circular link first by setting tailNode->nextNode = nullptr. This converts the circular list into a normal singly linked list, allowing safe deletion using a standard while loop.     
+**Commit(s):** Day 10: Implemented clear() to safely delete circular linked list nodes   
 
 ---
 
