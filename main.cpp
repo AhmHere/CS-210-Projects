@@ -401,7 +401,23 @@ int main() {
     //
     // NOTE: This starter calls addSpace once to show the intended API,
     // but your final submission should build a meaningful board.
-    board.addSpace(MonopolySpace("GO", "None", 0, 0));
+    vector<MonopolySpace> spaces;
+
+    spaces.push_back(MonopolySpace("GO", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Mediterranean Avenue", "Brown", 60, 2));
+    spaces.push_back(MonopolySpace("Community Chest", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Baltic Avenue", "Brown", 60, 4));
+    spaces.push_back(MonopolySpace("Income Tax", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Reading Railroad", "Railroad", 200, 25));
+    spaces.push_back(MonopolySpace("Oriental Avenue", "Light Blue", 100, 6));
+    spaces.push_back(MonopolySpace("Chance", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Vermont Avenue", "Light Blue", 100, 6));
+    spaces.push_back(MonopolySpace("Connecticut Avenue", "Light Blue", 120, 8));
+    spaces.push_back(MonopolySpace("Jail", "None", 0, 0));
+
+    board.addMany(spaces);
+    // Wanted to make use of our helper function
+    cout << "Total spaces on board: " << board.countSpaces() << endl;
 
     // -------------------------------
     // Playable Traversal Loop
