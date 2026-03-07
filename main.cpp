@@ -416,7 +416,7 @@ int main() {
     spaces.push_back(MonopolySpace("Jail", "None", 0, 0));
 
     board.addMany(spaces);
-    // Wanted to make use of our helper function
+    // Wanted to demonstrate use of our helper function to verify board size
     cout << "Total spaces on board: " << board.countSpaces() << endl;
 
     // -------------------------------
@@ -440,7 +440,28 @@ int main() {
     // Option A examples:
     // board.removeByName("Baltic Avenue");
     // vector<string> brownProps = board.findByColor("Brown");
-    //
+    cout << "\n--- Advanced Feature Demo ---" << endl;
+
+    // Demonstrate findByColor
+    vector<string> brownProps = board.findByColor("Brown");
+
+    cout << "Brown properties:" << endl;
+    for (string name : brownProps) {
+        cout << name << endl;
+    }
+
+    // Demonstrate removeByName
+    cout << "\nRemoving Baltic Avenue..." << endl;
+
+    if (board.removeByName("Baltic Avenue")) {
+        cout << "Baltic Avenue removed successfully." << endl;
+    } else {
+        cout << "Baltic Avenue not found." << endl;
+    }
+
+    // Verify removal
+    cout << "\nBoard after removal:" << endl;
+    board.printBoardOnce();
     // Option B example:
     // board.mirrorBoard();
 

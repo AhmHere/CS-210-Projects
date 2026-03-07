@@ -94,11 +94,11 @@ Each entry may be one of the following:
 ---
 
 ### Entry 6
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-03-06  
+**Entry Type:** Bug Fix / Testing
+**Task worked on:** Testing advanced features removeByName and findByColor 
+**Issue or decision:** While testing the advanced features in main(), I wanted to verify that removing a node from the circular linked list would not break the board traversal.    
+**Error message / symptom (if applicable):** I realized while running the code that if a node such as "Baltic Avenue" is removed incorrectly, the circular structure would somtimes become corrupted, which would cause traversal functions like printBoardOnce() or movePlayer() to fail or loop incorrectly.     
+**What I tried:** I added a small demo section in main() to call findByColor("Brown") and then removeByName("Baltic Avenue"). After removing the node, I printed the board again using printBoardOnce() to verify that the circular structure was still intact.    
+**Fix / resolution (or final decision):** I implemented the removal logic correctly and updated the previous node's next pointer and handled head, tail, and middle node deletion cases. After removal, the board printed correctly and traversal continued normally.     
+**Commit(s):** Day 12: Added demonstrations for findByColor and removeByName features and added final DEVLOG!  
