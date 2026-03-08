@@ -19,7 +19,7 @@ public:
     int rent;
 
     MonopolySpace() {
-        // TODO: define default constructor (recommended)
+        // define default constructor (recommended)
         propertyName = "";
         propertyColor = "";
         value = 0;
@@ -27,7 +27,7 @@ public:
     }
 
     MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
-        /* TODO: Define overloaded constructor here */
+        /* Define overloaded constructor here */
         this->propertyName = propertyName;
         this->propertyColor = propertyColor;
         this->value = value;
@@ -35,12 +35,12 @@ public:
     }
 
     bool isEqual(MonopolySpace other) {
-        /* TODO: Define isEqual here (compare by name is fine if you enforce uniqueness) */
+        /* Define isEqual here (compare by name is fine if you enforce uniqueness) */
         return propertyName == other.propertyName;
     }
 
     void print() {
-        /* TODO: Define print here */
+        /* Define print here */
         // Example style:
         // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
         cout << propertyName << " | "
@@ -106,7 +106,6 @@ public:
     // Core A: Add a Space with Capacity Enforcement
     // -------------------------------
     bool addSpace(T value) {
-        // TODO:
         // - If nodeCount == MAX_SPACES return false (do not corrupt list)
         // capacity check
         if (nodeCount == MAX_SPACES) {
@@ -138,7 +137,6 @@ public:
     // Core B: Add Multiple Spaces at Once
     // -------------------------------
     int addMany(vector<T> values) {
-        // TODO:
         // - Add sequentially until full
         int addedCount = 0;
 
@@ -158,7 +156,6 @@ public:
     // Core C: Traversal-Based Player Movement
     // -------------------------------
     void movePlayer(int steps) {
-        // TODO:
         // - Must handle empty list safely
         if (playerNode == nullptr) {
             cout << "Board is empty." << endl;
@@ -187,7 +184,6 @@ public:
     // Core D: Controlled Board Display
     // -------------------------------
     void printFromPlayer(int count) {
-        // TODO:
         // - Must handle empty list
         // - Output must be deterministic and readable
         if (playerNode == nullptr) {
@@ -206,7 +202,6 @@ public:
 
     // Optional helper: print full board once (one full cycle)
     void printBoardOnce() {
-        // TODO:
         // - Traverse exactly one full cycle and print each node
         if (headNode == nullptr) {
             cout << "Board is empty." << endl;
@@ -225,7 +220,6 @@ public:
     // Advanced Option A (Level 1): removeByName
     // -------------------------------
     bool removeByName(string name) {
-        // TODO:
         if (headNode == nullptr) {
             return false;
         }
@@ -285,7 +279,6 @@ public:
     // Advanced Option A (Level 1): findByColor
     // -------------------------------
     vector<string> findByColor(string color) {
-        // TODO:
         vector<string> matches;
         // - Handle Empty Board
         if (headNode == nullptr) {
@@ -311,7 +304,6 @@ public:
     // Advanced Option B (Level 2): Mirror the Board (Circular Reversal)
     // -------------------------------
     void mirrorBoard() {
-        // TODO:
         // - Reverse the direction of the circular list by reversing next pointers
         // - Preserve circular structure
         // - Correctly handle empty list and single-node list
@@ -323,7 +315,6 @@ public:
     // Edge-case helper: countSpaces O(n)
     // -------------------------------
     int countSpaces() {
-        // TODO:
         if (headNode == nullptr) {
             return 0;
         }
@@ -346,7 +337,6 @@ public:
     // Cleanup
     // -------------------------------
     void clear() {
-        // TODO:
         if (headNode == nullptr) {
             return;
         }
@@ -415,22 +405,36 @@ int main() {
     spaces.push_back(MonopolySpace("Connecticut Avenue", "Light Blue", 120, 8));
     spaces.push_back(MonopolySpace("Jail", "None", 0, 0));
 
+    // Add the spaces to the circular board structure
     board.addMany(spaces);
     // Wanted to demonstrate use of our helper function to verify board size
     cout << "Total spaces on board: " << board.countSpaces() << endl;
 
     // -------------------------------
+    // Cool little Gameplay Header, just like in video games :D
+    // -------------------------------
+    cout << "\n===============================" << endl;
+    cout << "  Monopoly Board Simulation" << endl;
+    cout << "===============================" << endl;
+
+    // -------------------------------
     // Playable Traversal Loop
     // -------------------------------
+    // Simulate 10 turns of gameplay using dice rolls
     for (int turn = 1; turn <= 10; turn++) {
         int roll = rollDice2to12();
-        cout << "\nTurn " << turn << " | Rolled: " << roll << endl;
+        // Wanted to add a seperate spacer for readability
+        cout << "\n-------------------------------" << endl;
+        cout << "Turn " << turn << " | Rolled: " << roll << endl;
 
+        // Move the player around the circular board
         board.movePlayer(roll);
 
+        // Display a view of the next few spaces from the player's position
         cout << "Board view from player (next 5 spaces):" << endl;
         board.printFromPlayer(5);
 
+        // Track how many times the player has passed GO
         cout << "Times passed GO so far: " << board.getPassGoCount() << endl;
     }
 
@@ -442,7 +446,7 @@ int main() {
     // vector<string> brownProps = board.findByColor("Brown");
     cout << "\n--- Advanced Feature Demo ---" << endl;
 
-    // Demonstrate findByColor
+    // Demonstrate findByColor features
     vector<string> brownProps = board.findByColor("Brown");
 
     cout << "Brown properties:" << endl;
@@ -450,7 +454,7 @@ int main() {
         cout << name << endl;
     }
 
-    // Demonstrate removeByName
+    // Demonstrate removeByName features
     cout << "\nRemoving Baltic Avenue..." << endl;
 
     if (board.removeByName("Baltic Avenue")) {
@@ -459,11 +463,14 @@ int main() {
         cout << "Baltic Avenue not found." << endl;
     }
 
-    // Verify removal
+    // Verify the board structure after removal
     cout << "\nBoard after removal:" << endl;
     board.printBoardOnce();
     // Option B example:
     // board.mirrorBoard();
+
+    // Wanted to demonstrate use of our clear function to clear the board
+    board.clear();
 
     return 0;
 }
