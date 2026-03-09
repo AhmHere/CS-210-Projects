@@ -150,3 +150,111 @@ Your `README.md` must include:
 
 ## Notes
 This assignment is about thinking in pointers, not arrays. If your logic depends on indexing shortcuts, you are solving the wrong problem. Treat the board like a ring, because that is exactly what it is.
+My own notes:
+---
+
+# Implementation Details
+
+## Data Structures Used
+
+### MonopolySpace
+Represents a single space on the Monopoly board.
+
+Properties:
+- `propertyName`
+- `propertyColor`
+- `value`
+- `rent`
+
+Methods:
+- `print()` – displays the space information
+- `isEqual()` – compares two spaces by name
+
+
+### Node<T>
+Template class representing a node in the linked list.
+
+Properties:
+- `data` – stores the space information
+- `nextNode` – pointer to the next node in the list
+
+
+### CircularLinkedList<T>
+Stores the Monopoly board as a circular linked list.
+
+Important members:
+- `headNode` – first node in the list
+- `tailNode` – last node in the list
+- `playerNode` – tracks the player's current position
+- `nodeCount` – number of spaces in the board
+- `passGoCount` – tracks how many times GO has been passed
+
+
+---
+
+# Functions Implemented
+
+### Core Functions
+
+`addSpace(T value)`
+Adds a new space to the board while enforcing the **40-space maximum limit**.
+
+`addMany(vector<T>)`
+Adds multiple spaces sequentially until the board reaches capacity.
+
+`movePlayer(int steps)`
+Moves the player around the circular board based on a dice roll and tracks when GO is passed.
+
+`printFromPlayer(int count)`
+Prints a fixed number of spaces starting from the player's current position.
+
+`printBoardOnce()`
+Traverses the circular list exactly once and prints all board spaces.
+
+
+---
+
+### Advanced Option A Features
+
+`removeByName(string name)`
+Deletes the first node matching the given property name while maintaining circular list integrity.
+
+Handles:
+- deleting the head node
+- deleting the tail node
+- deleting the only node in the list
+- deleting nodes in the middle
+
+`findByColor(string color)`
+Traverses the board once and returns all property names that match the specified color.
+
+
+---
+
+### Helper Functions
+
+`countSpaces()`
+Traverses the circular list once and counts the number of spaces without relying on the stored node count.
+
+`clear()`
+Deletes all nodes safely by breaking the circular link before performing normal list deletion.
+
+
+---
+
+# Traversal and Player Movement Logic
+
+The Monopoly board is implemented as a **circular linked list**, meaning the final node points back to the head node. This allows the player to continuously move around the board without reaching a null pointer.
+
+Player movement is implemented using pointer traversal. The `movePlayer()` function advances the player node one space at a time for each step rolled on the dice.
+
+When the player moves from the tail node back to the head node, the program increments the `passGoCount`, representing passing GO.
+
+
+---
+
+# Board Size Constraint
+
+The Monopoly board has a maximum size of **40 spaces**. This is enforced in the `addSpace()` function. If the board already contains 40 nodes, additional insertions are rejected and the linked list remains unchanged.
+
+This prevents corruption of the circular list structure.
